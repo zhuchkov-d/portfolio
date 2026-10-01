@@ -8,13 +8,9 @@ import type { Project } from "@/lib/content";
 
 type ProjectCardProps = {
   project: Project;
-  index: number;
-  total: number;
 };
 
-export function ProjectCard({ project, index, total }: ProjectCardProps) {
-  const number = String(index + 1).padStart(2, "0");
-
+export function ProjectCard({ project }: ProjectCardProps) {
   return (
     <Link
       href={caseHref(project.id)}
@@ -30,14 +26,9 @@ export function ProjectCard({ project, index, total }: ProjectCardProps) {
 
         <div className="grid gap-5 px-3 pt-6 pb-3 sm:px-4 sm:pt-7 sm:pb-4 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end lg:gap-10">
           <div className="min-w-0">
-            <div className="flex items-baseline gap-3">
-              <span className="font-mono text-[11px] tracking-[0.18em] text-muted-foreground tabular-nums">
-                {number}&thinsp;/&thinsp;{String(total).padStart(2, "0")}
-              </span>
-              <h3 className="text-2xl font-medium tracking-[-0.02em] sm:text-3xl">
-                {project.title}
-              </h3>
-            </div>
+            <h3 className="text-2xl font-medium tracking-[-0.02em] sm:text-3xl">
+              {project.title}
+            </h3>
             <p className="mt-2.5 max-w-2xl text-sm leading-relaxed text-muted-foreground line-clamp-2">
               {project.description}
             </p>

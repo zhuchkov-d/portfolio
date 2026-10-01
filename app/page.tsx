@@ -23,10 +23,10 @@ export default function Home() {
             aside="Mobile B2C, B2B SaaS и B2B CRM и CAD.
             Везде измеримый результат"
           />
-          <div className="flex flex-col gap-6">
-            {projects.map((p, i) => (
+          <div className="flex flex-col gap-10">
+            {projects.map((p) => (
               <Reveal key={p.id}>
-                <ProjectCard project={p} index={i} total={projects.length} />
+                <ProjectCard project={p} />
               </Reveal>
             ))}
           </div>

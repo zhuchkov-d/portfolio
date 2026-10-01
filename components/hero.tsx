@@ -1,4 +1,5 @@
 import { Reveal } from "@/components/reveal";
+import { Card } from "@/components/ui/card";
 
 const facts = [
   { value: "5+", label: "лет в продуктовом дизайне" },
@@ -27,22 +28,25 @@ export function Hero() {
 
       <Reveal immediate delay={0.2}>
         <p className="mt-9 max-w-xl text-lg leading-relaxed text-muted-foreground sm:text-xl">
-          Самостоятельно веду product design, взаимодействую с разработчиками и стейкхолдерами. Провожу product discovery и презентую свои решения
+          Самостоятельно веду product design, взаимодействую с&nbsp;разработчиками и стейкхолдерами. Провожу product discovery и презентую свои решения
         </p>
       </Reveal>
 
       <Reveal immediate delay={0.3}>
-        <dl className="mt-16 grid max-w-2xl grid-cols-3 gap-6">
+        <dl className="mt-16 grid grid-cols-1 gap-4 sm:grid-cols-3">
           {facts.map((f) => (
-            <div key={f.label}>
+            <Card
+              key={f.label}
+              className="h-full justify-between rounded-[1.5rem] bg-card p-6 shadow-none ring-0 transition-[background-color,transform] duration-500 hover:-translate-y-0.5 hover:bg-[color-mix(in_oklch,var(--card),var(--foreground)_4%)]"
+            >
               <dt className="sr-only">{f.label}</dt>
               <dd className="text-3xl font-medium tracking-tight sm:text-4xl">
                 {f.value}
               </dd>
-              <dd className="mt-1.5 text-xs leading-snug text-muted-foreground sm:text-sm">
+              <dd className="text-xs leading-snug text-muted-foreground sm:text-sm">
                 {f.label}
               </dd>
-            </div>
+            </Card>
           ))}
         </dl>
       </Reveal>

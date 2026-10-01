@@ -43,7 +43,7 @@ export const projects: Project[] = [
   },
   {
     id: "cad-crm",
-    title: "CAD/CRM",
+    title: "Окна Столицы",
     category: "B2B · Внутренний продукт",
     description:
       "Связка проектирования и продаж для производственной компании. Упростил рабочее место менеджера: меньше переключений между окнами, больше контекста на одном экране.",
@@ -56,7 +56,7 @@ export const projects: Project[] = [
 export const petProject = {
   id: "path-arrows",
   title: "Path Arrows",
-  category: "Pet‑project · Плагин для Figma",
+  category: "Pet‑project · Figma Plugin",
   description:
     "Плагин, который рисует аккуратные стрелки вдоль любого path и держит их «живыми» при редактировании. Сделал от идеи до публикации в Figma Community: спецификация, UI, код.",
   metric: "8 000+ установок",

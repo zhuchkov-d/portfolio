@@ -45,7 +45,7 @@ export function SectionNav() {
       className="group fixed bottom-6 left-6 z-50 hidden md:block"
     >
       <ul className="flex flex-col rounded-2xl p-2 transition-colors duration-300 group-hover:bg-background/70 group-hover:backdrop-blur-xl group-focus-within:bg-background/70 group-focus-within:backdrop-blur-xl">
-        {sections.map((s, i) => {
+        {sections.map((s) => {
           const isActive = s.id === active;
           return (
             <li key={s.id}>
@@ -79,10 +79,7 @@ export function SectionNav() {
 
                 {/* Подпись — раскрывается при наведении, акцент на типографике */}
                 <span className="grid grid-cols-[0fr] transition-[grid-template-columns] duration-400 ease-[cubic-bezier(0.21,0.47,0.32,0.98)] group-hover:grid-cols-[1fr] group-focus-within:grid-cols-[1fr]">
-                  <span className="flex items-baseline gap-2.5 overflow-hidden whitespace-nowrap pl-0 opacity-0 transition-[opacity,padding,transform] duration-400 ease-[cubic-bezier(0.21,0.47,0.32,0.98)] group-hover:pl-3 group-hover:opacity-100 group-focus-within:pl-3 group-focus-within:opacity-100">
-                    <span className="font-mono text-[10px] tracking-[0.18em] text-muted-foreground/60 tabular-nums">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
+                  <span className="flex items-baseline overflow-hidden whitespace-nowrap pl-0 opacity-0 transition-[opacity,padding,transform] duration-400 ease-[cubic-bezier(0.21,0.47,0.32,0.98)] group-hover:pl-3 group-hover:opacity-100 group-focus-within:pl-3 group-focus-within:opacity-100">
                     <span
                       className={cn(
                         "text-xl tracking-[-0.02em] transition-colors duration-300",
