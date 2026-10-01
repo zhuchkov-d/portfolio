@@ -52,8 +52,8 @@ export default function Home() {
         </section>
       </main>
 
-      <footer className="border-t border-border/60">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-6 font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
+      <footer>
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 pb-8 font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground/60">
           <span>© 2026 Daniel Zhuchkov</span>
           <span>Product design</span>
         </div>

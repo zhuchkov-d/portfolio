@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 type PreviewFrameProps = {
   src?: string;
   alt: string;
-  tone?: "light" | "dark";
+  tone?: "default" | "inverted";
   className?: string;
 };
 
@@ -15,26 +15,24 @@ type PreviewFrameProps = {
 export function PreviewFrame({
   src,
   alt,
-  tone = "light",
+  tone = "default",
   className,
 }: PreviewFrameProps) {
   return (
     <div
       className={cn(
-        "relative aspect-[16/10] w-full overflow-hidden rounded-2xl ring-1 ring-inset",
-        tone === "light"
-          ? "preview-grid ring-foreground/8"
-          : "bg-white/5 ring-white/10 [background-image:radial-gradient(rgb(255_255_255/0.14)_1px,transparent_1px)] [background-size:20px_20px]",
+        "relative w-full overflow-hidden rounded-[1.25rem]",
+        tone === "default" ? "preview-grid" : "preview-grid-inverted",
         className
       )}
     >
-      <div className="absolute inset-0 transition-transform duration-700 ease-[cubic-bezier(0.21,0.47,0.32,0.98)] group-hover:scale-[1.025]">
+      <div className="absolute inset-0 transition-transform duration-700 ease-[cubic-bezier(0.21,0.47,0.32,0.98)] group-hover:scale-[1.02]">
         {src ? (
           <Image
             src={src}
             alt={alt}
             fill
-            sizes="(min-width: 1024px) 60vw, 100vw"
+            sizes="(min-width: 1152px) 1104px, 100vw"
             className="object-cover"
           />
         ) : (
@@ -42,7 +40,7 @@ export function PreviewFrame({
             <span
               className={cn(
                 "font-mono text-[11px] uppercase tracking-[0.2em]",
-                tone === "light" ? "text-muted-foreground/70" : "text-white/40"
+                tone === "default" ? "text-muted-foreground/60" : "text-background/40"
               )}
             >
               Превью · скоро

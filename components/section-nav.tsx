@@ -44,8 +44,8 @@ export function SectionNav() {
       aria-label="Разделы страницы"
       className="group fixed bottom-6 left-6 z-50 hidden md:block"
     >
-      <ul className="flex flex-col gap-0.5 rounded-2xl border border-border/70 bg-background/80 p-1.5 shadow-xs backdrop-blur-xl">
-        {sections.map((s) => {
+      <ul className="flex flex-col rounded-2xl p-2 transition-colors duration-300 group-hover:bg-background/70 group-hover:backdrop-blur-xl group-focus-within:bg-background/70 group-focus-within:backdrop-blur-xl">
+        {sections.map((s, i) => {
           const isActive = s.id === active;
           return (
             <li key={s.id}>
@@ -53,30 +53,44 @@ export function SectionNav() {
                 href={`#${s.id}`}
                 aria-current={isActive ? "location" : undefined}
                 className={cn(
-                  "relative flex h-8 items-center rounded-xl px-2.5 text-sm outline-none transition-colors duration-300 focus-visible:ring-3 focus-visible:ring-ring/50",
+                  "relative flex h-9 items-center rounded-xl px-2 outline-none focus-visible:ring-3 focus-visible:ring-ring/50",
                   isActive
                     ? "text-foreground"
-                    : "text-muted-foreground hover:text-foreground"
+                    : "text-muted-foreground/70 hover:text-foreground"
                 )}
               >
-                {isActive && (
-                  <motion.span
-                    layoutId="section-nav-active"
-                    className="absolute inset-0 rounded-xl bg-muted"
-                    transition={{ type: "spring", stiffness: 420, damping: 36 }}
+                {/* Статичная точка */}
+                <span className="relative flex size-4 shrink-0 items-center justify-center">
+                  <span
+                    className={cn(
+                      "size-1.5 rounded-full bg-muted-foreground/40 transition-colors duration-300",
+                      !isActive && "group-hover:bg-muted-foreground/60"
+                    )}
                   />
-                )}
-                <span
-                  className={cn(
-                    "relative size-1.5 shrink-0 rounded-full transition-[background-color,transform] duration-300",
-                    isActive
-                      ? "scale-125 bg-foreground"
-                      : "bg-muted-foreground/40 group-hover:bg-muted-foreground/70"
+                  {/* Скользящий индикатор активного раздела */}
+                  {isActive && (
+                    <motion.span
+                      layoutId="section-nav-dot"
+                      className="absolute size-2 rounded-full bg-foreground"
+                      transition={{ type: "spring", stiffness: 420, damping: 34 }}
+                    />
                   )}
-                />
-                <span className="relative grid grid-cols-[0fr] transition-[grid-template-columns] duration-300 ease-[cubic-bezier(0.21,0.47,0.32,0.98)] group-hover:grid-cols-[1fr] group-focus-within:grid-cols-[1fr]">
-                  <span className="overflow-hidden whitespace-nowrap pl-0 opacity-0 transition-[opacity,padding] duration-300 group-hover:pl-3 group-hover:opacity-100 group-focus-within:pl-3 group-focus-within:opacity-100">
-                    {s.label}
+                </span>
+
+                {/* Подпись — раскрывается при наведении, акцент на типографике */}
+                <span className="grid grid-cols-[0fr] transition-[grid-template-columns] duration-400 ease-[cubic-bezier(0.21,0.47,0.32,0.98)] group-hover:grid-cols-[1fr] group-focus-within:grid-cols-[1fr]">
+                  <span className="flex items-baseline gap-2.5 overflow-hidden whitespace-nowrap pl-0 opacity-0 transition-[opacity,padding,transform] duration-400 ease-[cubic-bezier(0.21,0.47,0.32,0.98)] group-hover:pl-3 group-hover:opacity-100 group-focus-within:pl-3 group-focus-within:opacity-100">
+                    <span className="font-mono text-[10px] tracking-[0.18em] text-muted-foreground/60 tabular-nums">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <span
+                      className={cn(
+                        "text-xl tracking-[-0.02em] transition-colors duration-300",
+                        isActive ? "font-medium" : "font-normal"
+                      )}
+                    >
+                      {s.label}
+                    </span>
                   </span>
                 </span>
               </a>

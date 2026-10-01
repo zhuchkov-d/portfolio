@@ -12,7 +12,7 @@ const icons = {
 } satisfies Record<(typeof contacts)[number]["id"], React.ElementType>;
 
 const tileClass =
-  "group relative flex aspect-square flex-col justify-between rounded-[1.5rem] p-6 shadow-none transition-[box-shadow,--tw-ring-color,transform] duration-500 sm:aspect-[4/3] lg:aspect-square";
+  "group relative flex aspect-square flex-col justify-between rounded-[1.5rem] p-6 shadow-none ring-0 transition-[background-color,transform] duration-500 sm:aspect-[4/3] lg:aspect-square";
 
 export function Contacts() {
   return (
@@ -30,7 +30,7 @@ export function Contacts() {
               <Card
                 className={cn(
                   tileClass,
-                  "bg-card ring-foreground/8 hover:-translate-y-0.5 hover:ring-foreground/20"
+                  "bg-card hover:-translate-y-0.5 hover:bg-[color-mix(in_oklch,var(--card),var(--foreground)_4%)]"
                 )}
               >
                 <div className="flex items-start justify-between">
@@ -60,7 +60,7 @@ export function Contacts() {
           <Card
             className={cn(
               tileClass,
-              "bg-primary text-primary-foreground ring-0 hover:-translate-y-0.5 hover:bg-primary/90"
+              "bg-primary text-primary-foreground hover:-translate-y-0.5 hover:bg-primary/90"
             )}
           >
             <div className="flex items-start justify-between">

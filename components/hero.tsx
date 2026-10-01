@@ -34,7 +34,7 @@ export function Hero() {
       </Reveal>
 
       <Reveal immediate delay={0.3}>
-        <dl className="mt-16 grid max-w-2xl grid-cols-3 gap-6 border-t border-border/70 pt-6">
+        <dl className="mt-16 grid max-w-2xl grid-cols-3 gap-6">
           {facts.map((f) => (
             <div key={f.label}>
               <dt className="sr-only">{f.label}</dt>

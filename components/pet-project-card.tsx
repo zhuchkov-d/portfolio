@@ -1,6 +1,5 @@
 import { ArrowUpRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { FigmaIcon } from "@/components/icons";
 import { PreviewFrame } from "@/components/preview-frame";
@@ -8,45 +7,46 @@ import { petProject } from "@/lib/content";
 
 export function PetProjectCard() {
   return (
-    <Card className="group rounded-[1.75rem] bg-foreground text-background shadow-none ring-0 [--card-spacing:--spacing(6)] sm:[--card-spacing:--spacing(8)] lg:[--card-spacing:--spacing(10)]">
-      <div className="grid gap-10 px-(--card-spacing) lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-end lg:gap-14">
-        <div className="flex flex-col">
-          <div className="flex items-center gap-3 font-mono text-xs uppercase tracking-[0.18em] text-background/60">
-            <FigmaIcon className="size-4" />
-            <span>{petProject.category}</span>
+    <a
+      href={petProject.href}
+      target="_blank"
+      rel="noreferrer"
+      className="block rounded-[1.75rem] outline-none focus-visible:ring-3 focus-visible:ring-ring/50"
+    >
+      <Card className="group gap-0 rounded-[1.75rem] bg-foreground p-2.5 text-background shadow-none ring-0 sm:p-3">
+        <PreviewFrame
+          tone="inverted"
+          alt="Превью плагина Path Arrows"
+          className="aspect-[4/3] sm:aspect-[16/9] lg:aspect-[21/9]"
+        />
+
+        <div className="grid gap-5 px-3 pt-6 pb-3 sm:px-4 sm:pt-7 sm:pb-4 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end lg:gap-10">
+          <div className="min-w-0">
+            <div className="flex items-center gap-3">
+              <FigmaIcon className="size-5 shrink-0 text-background/60" />
+              <h3 className="text-2xl font-medium tracking-[-0.02em] sm:text-3xl">
+                {petProject.title}
+              </h3>
+            </div>
+            <p className="mt-2.5 max-w-2xl text-sm leading-relaxed text-background/60 line-clamp-2">
+              {petProject.description}
+            </p>
           </div>
 
-          <h3 className="mt-6 text-4xl font-medium tracking-[-0.03em] sm:text-5xl lg:text-6xl">
-            {petProject.title}
-          </h3>
-
-          <p className="mt-5 max-w-md text-base leading-relaxed text-background/70">
-            {petProject.description}
-          </p>
-
-          <div className="mt-10 flex flex-wrap items-center gap-3">
-            <Badge className="h-9 rounded-full bg-background px-4 text-sm font-medium text-foreground tabular-nums">
+          <div className="flex flex-wrap items-center gap-2 lg:justify-end">
+            <Badge className="h-8 rounded-full bg-background/10 px-3.5 text-xs font-normal text-background/70">
+              {petProject.category}
+            </Badge>
+            <Badge className="h-8 rounded-full bg-background px-3.5 text-xs font-medium text-foreground tabular-nums">
               {petProject.metric}
             </Badge>
-            <Button
-              asChild
-              variant="ghost"
-              size="sm"
-              className="h-9 rounded-full px-4 text-background hover:bg-background/10 hover:text-background"
-            >
-              <a href={petProject.href} target="_blank" rel="noreferrer">
-                Открыть в Figma Community
-                <ArrowUpRight
-                  data-icon="inline-end"
-                  className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                />
-              </a>
-            </Button>
+            <span className="ml-1 inline-flex h-8 items-center gap-1.5 rounded-full bg-background/10 pr-2.5 pl-3.5 text-xs font-medium text-background transition-colors duration-300 group-hover:bg-background group-hover:text-foreground">
+              Figma Community
+              <ArrowUpRight className="size-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </span>
           </div>
         </div>
-
-        <PreviewFrame tone="dark" alt="Превью плагина Path Arrows" />
-      </div>
-    </Card>
+      </Card>
+    </a>
   );
 }
