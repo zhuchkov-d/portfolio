@@ -16,6 +16,7 @@ export function PetProjectCard() {
       <Card className="group gap-0 rounded-[1.75rem] bg-foreground p-2.5 text-background shadow-none ring-0 sm:p-3">
         <PreviewFrame
           tone="inverted"
+          src={petProject.preview}
           alt="Превью плагина Path Arrows"
           className="aspect-[4/3] sm:aspect-[16/9] lg:aspect-[21/9]"
         />

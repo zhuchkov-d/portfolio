@@ -30,6 +30,7 @@ export const projects: Project[] = [
     metric: "+23% Конверсия в подписку",
     metricLabel: "после редизайна онбординга",
     year: "2025",
+    preview: "/previews/ball-in-goal.png",
   },
   {
     id: "yourservice",
@@ -40,6 +41,7 @@ export const projects: Project[] = [
     metric: "Стратегический pivot",
     metricLabel: "на десктопе и мобайле",
     year: "2024",
+    preview: "/previews/ys.png",
   },
   {
     id: "cad-crm",
@@ -50,6 +52,7 @@ export const projects: Project[] = [
     metric: "−17% количество ошибок",
     metricLabel: "по данным внутренней аналитики",
     year: "2026",
+    preview: "/previews/okna.png",
   },
 ];
 
@@ -61,6 +64,7 @@ export const petProject = {
     "Плагин, который рисует аккуратные стрелки вдоль любого path и держит их «живыми» при редактировании. Сделал от идеи до публикации в Figma Community: спецификация, UI, код.",
   metric: "8 000+ установок",
   href: "https://www.figma.com/community/plugin/1498555397611918564",
+  preview: "/previews/path-arrows.png",
 };
 
 export const contacts = [
