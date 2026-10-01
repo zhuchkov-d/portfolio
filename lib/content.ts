@@ -59,8 +59,8 @@ export const petProject = {
   category: "Pet‑project · Плагин для Figma",
   description:
     "Плагин, который рисует аккуратные стрелки вдоль любого path и держит их «живыми» при редактировании. Сделал от идеи до публикации в Figma Community: спецификация, UI, код.",
-  metric: "2 400+ установок",
-  href: "https://www.figma.com/community",
+  metric: "8 000+ установок",
+  href: "https://www.figma.com/community/plugin/1498555397611918564",
 };
 
 export const contacts = [
@@ -74,12 +74,12 @@ export const contacts = [
     id: "linkedin",
     label: "LinkedIn",
     value: "in/daniel-zhuchkov",
-    href: "https://www.linkedin.com/in/daniel-zhuchkov",
+    href: "https://www.linkedin.com/in/danielzhuchkov/",
   },
   {
     id: "email",
     label: "Почта",
-    value: "hello@zhuchkov.design",
+    value: "zhuchkov.00@gmail.com",
     href: "mailto:hello@zhuchkov.design",
   },
 ] as const;

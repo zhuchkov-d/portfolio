@@ -19,7 +19,7 @@ export function Contacts() {
     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
       {contacts.map((c, i) => {
         const Icon = icons[c.id];
-        const external = !c.href.startsWith("mailto:");
+        const external = !c.href.startsWith("mailto:zhuchkov.00@gmail.com");
         return (
           <Reveal key={c.id} delay={i * 0.08}>
             <a

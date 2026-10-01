@@ -1,8 +1,8 @@
 import { Reveal } from "@/components/reveal";
 
 const facts = [
-  { value: "6+", label: "лет в продуктовом дизайне" },
-  { value: "3", label: "продукта от исследований до релиза" },
+  { value: "5+", label: "лет в продуктовом дизайне" },
+  { value: "B2B / Mobile", label: "Моя ключевая экспертиза" },
   { value: "1", label: "плагин в Figma Community" },
 ];
 
@@ -21,15 +21,13 @@ export function Hero() {
 
       <Reveal immediate delay={0.1}>
         <h1 className="mt-7 max-w-5xl text-[2.75rem] leading-[1.02] font-medium tracking-[-0.03em] text-balance sm:text-6xl lg:text-[5.25rem]">
-          Проектирую продукты, в&nbsp;которых сложное становится очевидным.
+          Привет я Даниил, в&nbsp;которых сложное становится очевидным
         </h1>
       </Reveal>
 
       <Reveal immediate delay={0.2}>
         <p className="mt-9 max-w-xl text-lg leading-relaxed text-muted-foreground sm:text-xl">
-          Беру на себя путь от исследования до дизайн‑системы и передачи
-          в разработку. Работал со спортивным мобайлом, сервисным маркетплейсом
-          и тяжёлым B2B — CAD/CRM.
+          Самостоятельно веду product design, взаимодействую с разработчиками и стейкхолдерами. Провожу product discovery и презентую свои решения
         </p>
       </Reveal>
 
