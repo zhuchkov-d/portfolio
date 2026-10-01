@@ -15,13 +15,13 @@ export function Hero() {
     >
       <Reveal immediate>
         <p className="font-mono text-xs uppercase tracking-[0.22em] text-muted-foreground">
-          Product designer · B2B / B2C · Remote
+          Product designer · B2B [CAD,CRM] / SaaS / Mobile
         </p>
       </Reveal>
 
       <Reveal immediate delay={0.1}>
         <h1 className="mt-7 max-w-5xl text-[2.75rem] leading-[1.02] font-medium tracking-[-0.03em] text-balance sm:text-6xl lg:text-[5.25rem]">
-          Привет я Даниил, в&nbsp;которых сложное становится очевидным
+          Привет я Даниил,<br />продуктовый дизайнер с&nbsp;обширным опытом
         </h1>
       </Reveal>
 

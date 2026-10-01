@@ -18,7 +18,7 @@ export function SectionHeading({ eyebrow, title, aside }: SectionHeadingProps) {
         </h2>
       </div>
       {aside && (
-        <p className="hidden max-w-xs text-right text-sm text-muted-foreground sm:block">
+        <p className="hidden max-w-xs text-right text-sm text-muted-foreground sm:block whitespace-pre-line">
           {aside}
         </p>
       )}

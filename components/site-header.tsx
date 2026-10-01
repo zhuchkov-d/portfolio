@@ -25,7 +25,7 @@ export function SiteHeader() {
       <div className="mx-auto grid h-16 max-w-6xl grid-cols-[1fr_auto_1fr] items-center px-6">
         <a
           href="#hero"
-          className="justify-self-start text-sm font-medium tracking-tight transition-opacity hover:opacity-60"
+          className="justify-self-start text-m font-medium tracking-tight transition-opacity hover:opacity-60"
         >
           Daniel Zhuchkov
         </a>

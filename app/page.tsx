@@ -20,7 +20,8 @@ export default function Home() {
           <SectionHeading
             eyebrow="Избранные проекты"
             title="Три продукта, три разных контекста"
-            aside="Мобайл, веб‑маркетплейс и тяжёлый B2B. Везде — измеримый результат."
+            aside="Mobile B2C, B2B SaaS и B2B CRM и CAD.
+            Везде измеримый результат"
           />
           <div className="flex flex-col gap-6">
             {projects.map((p, i) => (
@@ -34,8 +35,9 @@ export default function Home() {
         <section id="pet" aria-label="Pet-project" className="scroll-mt-24 pb-28 sm:pb-36">
           <SectionHeading
             eyebrow="Pet‑project"
-            title="Когда инструмента нет — делаю сам"
-            aside="Плагин для Figma, которым пользуюсь каждый день и которым делюсь с сообществом."
+            title="Делаю инструменты для задач"
+            aside="Некоммерческий плагин в Figma,
+            созданный для коммьюнити"
           />
           <Reveal>
             <PetProjectCard />
@@ -46,7 +48,8 @@ export default function Home() {
           <SectionHeading
             eyebrow="Контакты"
             title="Открыт к новым проектам"
-            aside="Отвечаю в течение дня. Удобнее всего — в Telegram."
+            aside="Отвечаю в течение дня.
+            Удобнее всего — в Telegram"
           />
           <Contacts />
         </section>
