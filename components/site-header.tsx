@@ -36,7 +36,7 @@ export function SiteHeader() {
           asChild
           size="sm"
           variant="secondary"
-          className="group justify-self-end rounded-full bg-secondary/70 px-3.5 shadow-none"
+          className="group justify-self-end rounded-full bg-secondary/70 px-3.5 shadow-none has-data-[icon=inline-end]:pr-3.5"
         >
           <a href={CV_URL} download>
             <span className="hidden sm:inline">Скачать CV</span>
