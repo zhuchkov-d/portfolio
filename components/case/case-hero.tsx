@@ -4,20 +4,16 @@ import type { CaseStudy } from "@/lib/cases";
 
 type CaseHeroProps = {
   study: CaseStudy;
-  index: number;
-  total: number;
 };
 
-export function CaseHero({ study, index, total }: CaseHeroProps) {
+export function CaseHero({ study }: CaseHeroProps) {
+  const domain = study.meta.find((m) => m.label === "Домен")?.value ?? "Кейс";
+
   return (
     <section id="hero" aria-label="Обзор кейса" className="pt-32 pb-20 sm:pt-40 sm:pb-28">
       <Reveal immediate>
-        <p className="flex items-baseline gap-3 font-mono text-xs uppercase tracking-[0.22em] text-muted-foreground">
-          <span className="tabular-nums">
-            {String(index + 1).padStart(2, "0")}&thinsp;/&thinsp;{String(total).padStart(2, "0")}
-          </span>
-          <span aria-hidden>·</span>
-          <span>Кейс</span>
+        <p className="font-mono text-xs uppercase tracking-[0.22em] text-muted-foreground">
+          {domain}
         </p>
       </Reveal>
 

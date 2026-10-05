@@ -31,7 +31,6 @@ export default async function CasePage({ params }: PageProps<"/work/[slug]">) {
   const study = getCaseStudy(slug);
   if (!study) notFound();
 
-  const index = caseStudies.findIndex((c) => c.slug === slug);
   const { prev, next } = getAdjacentCases(slug);
 
   return (
@@ -39,7 +38,7 @@ export default async function CasePage({ params }: PageProps<"/work/[slug]">) {
       <CaseHeader title={study.title} next={next} />
 
       <main className="mx-auto w-full max-w-6xl flex-1 px-6">
-        <CaseHero study={study} index={index} total={caseStudies.length} />
+        <CaseHero study={study} />
         <CaseSummary summary={study.summary} />
         <CaseStory sections={study.sections} />
         <CaseConstraints items={study.constraints} />

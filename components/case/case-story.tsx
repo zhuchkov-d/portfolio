@@ -1,6 +1,6 @@
 import { PreviewFrame } from "@/components/preview-frame";
 import { Reveal } from "@/components/reveal";
-import type { CaseSection } from "@/lib/cases";
+import type { CaseGallery, CaseSection, CaseVisual } from "@/lib/cases";
 import { cn } from "@/lib/utils";
 
 function StoryText({ section, centered }: { section: CaseSection; centered?: boolean }) {
@@ -39,7 +39,55 @@ function StoryVisual({ section }: { section: CaseSection }) {
   );
 }
 
+function GalleryItem({ item, className }: { item: CaseVisual; className?: string }) {
+  return (
+    <figure className={cn("group min-w-0", className)}>
+      <div className="h-full rounded-[1.5rem] bg-card p-2 transition-colors duration-500 hover:bg-[color-mix(in_oklch,var(--card),var(--foreground)_3%)] sm:p-2.5">
+        <PreviewFrame
+          src={item.src}
+          alt={item.alt}
+          className={cn("h-full rounded-[1.1rem]", item.aspect ?? "aspect-[4/3]")}
+        />
+      </div>
+      {item.caption && (
+        <figcaption className="mt-3 px-3 font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground/60">
+          {item.caption}
+        </figcaption>
+      )}
+    </figure>
+  );
+}
+
+/**
+ * Бенто‑сетка: 2 элемента — поровну, 3 — первый занимает две колонки на десктопе.
+ */
+function StoryGallery({ gallery }: { gallery: CaseGallery }) {
+  const items = gallery.items.slice(0, 3);
+  const three = items.length === 3;
+
+  return (
+    <Reveal delay={0.15} className="mt-4 sm:mt-5">
+      <div className={cn("grid gap-4 sm:gap-5", three ? "lg:grid-cols-3" : "sm:grid-cols-2")}>
+        {items.map((item, i) => (
+          <GalleryItem
+            key={`${item.alt}-${i}`}
+            item={item}
+            className={cn(three && i === 0 && "lg:col-span-2")}
+          />
+        ))}
+      </div>
+    </Reveal>
+  );
+}
+
+function hasGallery(section: CaseSection): section is CaseSection & { gallery: CaseGallery } {
+  const g = section.gallery;
+  return !!g && g.enabled !== false && g.items.length >= 2;
+}
+
 function StorySection({ section }: { section: CaseSection }) {
+  const gallery = hasGallery(section) ? <StoryGallery gallery={section.gallery} /> : null;
+
   if (section.align === "center") {
     return (
       <article id={section.id} className="scroll-mt-24">
@@ -49,6 +97,7 @@ function StorySection({ section }: { section: CaseSection }) {
         <Reveal delay={0.1} className="mt-12 sm:mt-16">
           <StoryVisual section={section} />
         </Reveal>
+        {gallery}
       </article>
     );
   }
@@ -56,27 +105,27 @@ function StorySection({ section }: { section: CaseSection }) {
   const textFirst = section.align === "left";
 
   return (
-    <article
-      id={section.id}
-      className="grid scroll-mt-24 gap-10 lg:grid-cols-12 lg:items-center lg:gap-16"
-    >
-      <Reveal
-        className={cn(
-          "lg:col-span-5",
-          textFirst ? "lg:order-1" : "lg:order-2"
-        )}
-      >
-        <StoryText section={section} />
-      </Reveal>
-      <Reveal
-        delay={0.1}
-        className={cn(
-          "lg:col-span-7",
-          textFirst ? "lg:order-2" : "lg:order-1"
-        )}
-      >
-        <StoryVisual section={section} />
-      </Reveal>
+    <article id={section.id} className="scroll-mt-24">
+      <div className="grid gap-10 lg:grid-cols-12 lg:items-center lg:gap-16">
+        <Reveal
+          className={cn(
+            "lg:col-span-5",
+            textFirst ? "lg:order-1" : "lg:order-2"
+          )}
+        >
+          <StoryText section={section} />
+        </Reveal>
+        <Reveal
+          delay={0.1}
+          className={cn(
+            "lg:col-span-7",
+            textFirst ? "lg:order-2" : "lg:order-1"
+          )}
+        >
+          <StoryVisual section={section} />
+        </Reveal>
+      </div>
+      {gallery}
     </article>
   );
 }
