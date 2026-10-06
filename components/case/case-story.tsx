@@ -71,6 +71,7 @@ function GalleryItem({ item, className }: { item: CaseVisual; className?: string
  * Бенто‑сетка: 1 элемент — крупно, как основное изображение; 2 — поровну;
  * 3 — первый занимает две колонки на десктопе.
  * `layout: "equal"` — равные колонки, каждый элемент со своим соотношением сторон.
+ * `layout: "lead"` — первый во всю ширину, остальные поровну под ним.
  */
 function StoryGallery({ gallery, className }: { gallery: CaseGallery; className?: string }) {
   const items = gallery.items.slice(0, 3);
@@ -82,6 +83,24 @@ function StoryGallery({ gallery, className }: { gallery: CaseGallery; className?
       <Reveal delay={0.15} className={cn("mt-4 sm:mt-5", className)}>
         <StoryVisual visual={items[0]} />
       </Reveal>
+    );
+  }
+
+  if (gallery.layout === "lead") {
+    const [lead, ...rest] = items;
+    return (
+      <div className={cn("mt-4 sm:mt-5", className)}>
+        <Reveal delay={0.15}>
+          <StoryVisual visual={lead} />
+        </Reveal>
+        <Reveal delay={0.2} className="mt-4 sm:mt-5">
+          <div className="grid gap-4 sm:grid-cols-2 sm:gap-5">
+            {rest.map((item, i) => (
+              <GalleryItem key={`${item.alt}-${i}`} item={item} />
+            ))}
+          </div>
+        </Reveal>
+      </div>
     );
   }
 
