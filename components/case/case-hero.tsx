@@ -8,6 +8,7 @@ type CaseHeroProps = {
 
 export function CaseHero({ study }: CaseHeroProps) {
   const domain = study.meta.find((m) => m.label === "Домен")?.value ?? "Кейс";
+  const meta = study.meta.filter((m) => m.label !== "Домен");
 
   return (
     <section id="hero" aria-label="Обзор кейса" className="pt-32 pb-20 sm:pt-40 sm:pb-28">
@@ -30,8 +31,8 @@ export function CaseHero({ study }: CaseHeroProps) {
       </Reveal>
 
       <Reveal immediate delay={0.3}>
-        <dl className="mt-16 grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-3 lg:grid-cols-5">
-          {study.meta.map((m) => (
+        <dl className="mt-16 grid w-full grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-4">
+          {meta.map((m) => (
             <div key={m.label} className="min-w-0">
               <dt className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground/70">
                 {m.label}
