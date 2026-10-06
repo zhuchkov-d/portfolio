@@ -27,6 +27,7 @@ function StoryVisual({ section }: { section: CaseSection }) {
         <PreviewFrame
           src={visual.src}
           alt={visual.alt}
+          fit={visual.fit}
           className={visual.aspect ?? "aspect-[16/10]"}
         />
       </div>
@@ -46,6 +47,7 @@ function GalleryItem({ item, className }: { item: CaseVisual; className?: string
         <PreviewFrame
           src={item.src}
           alt={item.alt}
+          fit={item.fit}
           className={cn("h-full rounded-[1.1rem]", item.aspect ?? "aspect-[4/3]")}
         />
       </div>
@@ -60,19 +62,27 @@ function GalleryItem({ item, className }: { item: CaseVisual; className?: string
 
 /**
  * Бенто‑сетка: 2 элемента — поровну, 3 — первый занимает две колонки на десктопе.
+ * `layout: "equal"` — равные колонки, каждый элемент со своим соотношением сторон.
  */
 function StoryGallery({ gallery }: { gallery: CaseGallery }) {
   const items = gallery.items.slice(0, 3);
   const three = items.length === 3;
+  const equal = gallery.layout === "equal";
 
   return (
     <Reveal delay={0.15} className="mt-4 sm:mt-5">
-      <div className={cn("grid gap-4 sm:gap-5", three ? "lg:grid-cols-3" : "sm:grid-cols-2")}>
+      <div
+        className={cn(
+          "grid gap-4 sm:gap-5",
+          three ? (equal ? "sm:grid-cols-3" : "lg:grid-cols-3") : "sm:grid-cols-2",
+          equal && "items-start"
+        )}
+      >
         {items.map((item, i) => (
           <GalleryItem
             key={`${item.alt}-${i}`}
             item={item}
-            className={cn(three && i === 0 && "lg:col-span-2")}
+            className={cn(three && !equal && i === 0 && "lg:col-span-2")}
           />
         ))}
       </div>

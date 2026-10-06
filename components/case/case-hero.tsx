@@ -50,6 +50,7 @@ export function CaseHero({ study }: CaseHeroProps) {
           <PreviewFrame
             src={study.cover.src}
             alt={study.cover.alt}
+            fit={study.cover.fit}
             className={study.cover.aspect ?? "aspect-[4/3] sm:aspect-[21/9]"}
           />
         </div>

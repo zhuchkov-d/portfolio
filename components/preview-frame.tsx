@@ -5,6 +5,7 @@ type PreviewFrameProps = {
   src?: string;
   alt: string;
   tone?: "default" | "inverted";
+  fit?: "cover" | "contain";
   className?: string;
 };
 
@@ -16,6 +17,7 @@ export function PreviewFrame({
   src,
   alt,
   tone = "default",
+  fit = "cover",
   className,
 }: PreviewFrameProps) {
   return (
@@ -33,7 +35,7 @@ export function PreviewFrame({
             alt={alt}
             fill
             sizes="(min-width: 1152px) 1104px, 100vw"
-            className="object-cover"
+            className={fit === "contain" ? "object-contain" : "object-cover"}
           />
         ) : (
           <div className="flex h-full items-center justify-center">
