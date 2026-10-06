@@ -12,9 +12,17 @@ function StoryText({ section, centered }: { section: CaseSection; centered?: boo
       <h2 className="mt-5 text-3xl font-medium tracking-[-0.03em] text-balance sm:text-4xl lg:text-[2.75rem] lg:leading-[1.08]">
         {section.title}
       </h2>
-      <p className="mt-6 text-base leading-relaxed text-muted-foreground text-pretty sm:text-lg">
-        {section.body}
-      </p>
+      {(Array.isArray(section.body) ? section.body : [section.body]).map((paragraph, i) => (
+        <p
+          key={i}
+          className={cn(
+            "text-base leading-relaxed text-muted-foreground text-pretty sm:text-lg",
+            i === 0 ? "mt-6" : "mt-4"
+          )}
+        >
+          {paragraph}
+        </p>
+      ))}
     </div>
   );
 }
@@ -140,25 +148,34 @@ function StorySection({ section }: { section: CaseSection }) {
     );
   }
 
-  const wide = section.textWidth === "wide";
+  const half = section.textWidth === "half";
+  const [textCols, visualCols] = {
+    default: ["lg:col-span-5", "lg:col-span-7"],
+    half: ["lg:col-span-6", "lg:col-span-6"],
+    wide: ["lg:col-span-8", "lg:col-span-4"],
+  }[section.textWidth ?? "default"];
 
   return (
     <article id={section.id} className="scroll-mt-24">
-      <div className="grid gap-10 lg:grid-cols-12 lg:items-center lg:gap-16">
+      {/* В режиме `half` отступ колонок совпадает с галереей ниже, чтобы края изображений сошлись */}
+      <div
+        className={cn(
+          "grid gap-10 lg:grid-cols-12 lg:items-center",
+          half ? "lg:gap-x-5" : "lg:gap-16"
+        )}
+      >
         <Reveal
           className={cn(
-            wide ? "lg:col-span-8" : "lg:col-span-5",
-            textFirst ? "lg:order-1" : "lg:order-2"
+            textCols,
+            textFirst ? "lg:order-1" : "lg:order-2",
+            half && (textFirst ? "lg:pr-11" : "lg:pl-11")
           )}
         >
           <StoryText section={section} />
         </Reveal>
         <Reveal
           delay={0.1}
-          className={cn(
-            wide ? "lg:col-span-4" : "lg:col-span-7",
-            textFirst ? "lg:order-2" : "lg:order-1"
-          )}
+          className={cn(visualCols, textFirst ? "lg:order-2" : "lg:order-1")}
         >
           <StoryVisual visual={visual} />
         </Reveal>
