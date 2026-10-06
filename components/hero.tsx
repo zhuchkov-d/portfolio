@@ -4,7 +4,7 @@ import { Card } from "@/components/ui/card";
 const facts = [
   { value: "5+", label: "лет в продуктовом дизайне" },
   { value: "B2B / Mobile", label: "Моя ключевая экспертиза" },
-  { value: "1", label: "плагин в Figma Community" },
+  { value: "8 000+", label: "использований моего плагина в Figma" },
 ];
 
 export function Hero() {
