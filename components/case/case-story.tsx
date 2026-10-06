@@ -19,8 +19,7 @@ function StoryText({ section, centered }: { section: CaseSection; centered?: boo
   );
 }
 
-function StoryVisual({ section }: { section: CaseSection }) {
-  const { visual } = section;
+function StoryVisual({ visual }: { visual: CaseVisual }) {
   return (
     <figure className="group min-w-0">
       <div className="rounded-[1.75rem] bg-card p-2.5 transition-colors duration-500 hover:bg-[color-mix(in_oklch,var(--card),var(--foreground)_3%)] sm:p-3">
@@ -61,16 +60,25 @@ function GalleryItem({ item, className }: { item: CaseVisual; className?: string
 }
 
 /**
- * Бенто‑сетка: 2 элемента — поровну, 3 — первый занимает две колонки на десктопе.
+ * Бенто‑сетка: 1 элемент — крупно, как основное изображение; 2 — поровну;
+ * 3 — первый занимает две колонки на десктопе.
  * `layout: "equal"` — равные колонки, каждый элемент со своим соотношением сторон.
  */
-function StoryGallery({ gallery }: { gallery: CaseGallery }) {
+function StoryGallery({ gallery, className }: { gallery: CaseGallery; className?: string }) {
   const items = gallery.items.slice(0, 3);
   const three = items.length === 3;
   const equal = gallery.layout === "equal";
 
+  if (items.length === 1) {
+    return (
+      <Reveal delay={0.15} className={cn("mt-4 sm:mt-5", className)}>
+        <StoryVisual visual={items[0]} />
+      </Reveal>
+    );
+  }
+
   return (
-    <Reveal delay={0.15} className="mt-4 sm:mt-5">
+    <Reveal delay={0.15} className={cn("mt-4 sm:mt-5", className)}>
       <div
         className={cn(
           "grid gap-4 sm:gap-5",
@@ -92,11 +100,14 @@ function StoryGallery({ gallery }: { gallery: CaseGallery }) {
 
 function hasGallery(section: CaseSection): section is CaseSection & { gallery: CaseGallery } {
   const g = section.gallery;
-  return !!g && g.enabled !== false && g.items.length >= 2;
+  return !!g && g.enabled !== false && g.items.length >= 1;
 }
 
 function StorySection({ section }: { section: CaseSection }) {
-  const gallery = hasGallery(section) ? <StoryGallery gallery={section.gallery} /> : null;
+  const { visual } = section;
+  const gallery = hasGallery(section) ? (
+    <StoryGallery gallery={section.gallery} className={cn(!visual && "mt-12 sm:mt-16")} />
+  ) : null;
 
   if (section.align === "center") {
     return (
@@ -104,9 +115,11 @@ function StorySection({ section }: { section: CaseSection }) {
         <Reveal>
           <StoryText section={section} centered />
         </Reveal>
-        <Reveal delay={0.1} className="mt-12 sm:mt-16">
-          <StoryVisual section={section} />
-        </Reveal>
+        {visual && (
+          <Reveal delay={0.1} className="mt-12 sm:mt-16">
+            <StoryVisual visual={visual} />
+          </Reveal>
+        )}
         {gallery}
       </article>
     );
@@ -114,12 +127,27 @@ function StorySection({ section }: { section: CaseSection }) {
 
   const textFirst = section.align === "left";
 
+  if (!visual) {
+    return (
+      <article id={section.id} className="scroll-mt-24">
+        <div className="grid lg:grid-cols-12">
+          <Reveal className={cn("lg:col-span-8", !textFirst && "lg:col-start-5")}>
+            <StoryText section={section} />
+          </Reveal>
+        </div>
+        {gallery}
+      </article>
+    );
+  }
+
+  const wide = section.textWidth === "wide";
+
   return (
     <article id={section.id} className="scroll-mt-24">
       <div className="grid gap-10 lg:grid-cols-12 lg:items-center lg:gap-16">
         <Reveal
           className={cn(
-            "lg:col-span-5",
+            wide ? "lg:col-span-8" : "lg:col-span-5",
             textFirst ? "lg:order-1" : "lg:order-2"
           )}
         >
@@ -128,11 +156,11 @@ function StorySection({ section }: { section: CaseSection }) {
         <Reveal
           delay={0.1}
           className={cn(
-            "lg:col-span-7",
+            wide ? "lg:col-span-4" : "lg:col-span-7",
             textFirst ? "lg:order-2" : "lg:order-1"
           )}
         >
-          <StoryVisual section={section} />
+          <StoryVisual visual={visual} />
         </Reveal>
       </div>
       {gallery}

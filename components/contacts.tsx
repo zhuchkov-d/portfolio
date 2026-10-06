@@ -2,7 +2,7 @@ import { ArrowUpRight, Download, Mail } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { LinkedInIcon, TelegramIcon } from "@/components/icons";
 import { Reveal } from "@/components/reveal";
-import { CV_URL, contacts } from "@/lib/content";
+import { CV_FILE, CV_URL, contacts } from "@/lib/content";
 import { cn } from "@/lib/utils";
 
 const icons = {
@@ -54,7 +54,7 @@ export function Contacts() {
       <Reveal delay={contacts.length * 0.08}>
         <a
           href={CV_URL}
-          download
+          download={CV_FILE}
           className="block rounded-[1.5rem] outline-none focus-visible:ring-3 focus-visible:ring-ring/50"
         >
           <Card

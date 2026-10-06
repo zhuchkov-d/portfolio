@@ -1,4 +1,6 @@
-export const CV_URL = "/cv.pdf";
+/** Файл лежит в `public/`. Чтобы обновить CV — замените PDF под тем же именем. */
+export const CV_FILE = "Даниил Жучков Product Designer.pdf";
+export const CV_URL = `/${encodeURIComponent(CV_FILE)}`;
 
 export const sections = [
   { id: "hero", label: "Обо мне" },

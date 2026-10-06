@@ -1,7 +1,7 @@
 import { Download } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { CV_URL } from "@/lib/content";
+import { CV_FILE, CV_URL } from "@/lib/content";
 
 function OnlineStatus() {
   return (
@@ -38,7 +38,7 @@ export function SiteHeader() {
           variant="secondary"
           className="group justify-self-end rounded-full bg-secondary/70 px-3.5 shadow-none has-data-[icon=inline-end]:pr-3.5"
         >
-          <a href={CV_URL} download>
+          <a href={CV_URL} download={CV_FILE}>
             <span className="hidden sm:inline">Скачать CV</span>
             <span className="sm:hidden">CV</span>
             <Download
