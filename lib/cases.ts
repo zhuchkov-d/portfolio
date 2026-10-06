@@ -294,7 +294,7 @@ export const caseStudies: CaseStudy[] = [
           "Я с нуля спроектировал СРМ как единое пространство работы менеджера. В ней он может создавать и отслеживать заявки, назначать мастеров, управлять штатом компании, формировать кастомные инвойсы или использовать стандартные через Stripe",
         ],
         align: "center",
-        visual: { src: ys(7), alt: "CRM для менеджера компании", aspect: "aspect-[4/3]", fit: "contain" },
+        visual: { src: ys(7), alt: "CRM для менеджера компании", aspect: "aspect-[3/2]" },
         gallery: {
           enabled: true,
           layout: "equal",
