@@ -1,6 +1,11 @@
+import { IMAGE_VERSION } from "@/lib/image-version";
+
 /** Файл лежит в `public/`. Чтобы обновить CV — замените PDF под тем же именем. */
 export const CV_FILE = "Даниил Жучков Product Designer.pdf";
 export const CV_URL = `/${encodeURIComponent(CV_FILE)}`;
+
+/** Превью проектов лежат в `public/previews/<name>.png` */
+const preview = (name: string) => `/previews/${name}.png?v=${IMAGE_VERSION}`;
 
 export const sections = [
   { id: "hero", label: "Обо мне" },
@@ -32,7 +37,7 @@ export const projects: Project[] = [
     metric: "+23% Конверсия в подписку",
     metricLabel: "после редизайна онбординга",
     year: "2025",
-    preview: "/previews/ball-in-goal.png",
+    preview: preview("ball-in-goal"),
   },
   {
     id: "yourservice",
@@ -43,7 +48,7 @@ export const projects: Project[] = [
     metric: "Стратегический pivot",
     metricLabel: "на десктопе и мобайле",
     year: "2024",
-    preview: "/previews/ys.png",
+    preview: preview("ys"),
   },
   {
     id: "cad-crm",
@@ -54,7 +59,7 @@ export const projects: Project[] = [
     metric: "−17% количество ошибок",
     metricLabel: "по данным внутренней аналитики",
     year: "2026",
-    preview: "/previews/okna.png",
+    preview: preview("okna"),
   },
 ];
 
@@ -66,7 +71,7 @@ export const petProject = {
     "Плагин, который рисует аккуратные стрелки вдоль любого path и держит их «живыми» при редактировании. Сделал от идеи до публикации в Figma Community: спецификация, UI, код.",
   metric: "8 000+ установок",
   href: "https://www.figma.com/community/plugin/1498555397611918564",
-  preview: "/previews/path-arrows.png",
+  preview: preview("path-arrows"),
 };
 
 export const contacts = [
